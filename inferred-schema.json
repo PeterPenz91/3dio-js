@@ -1,0 +1,939 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "jsonrpc": {
+      "type": "string"
+    },
+    "method": {
+      "type": "string"
+    },
+    "params": {
+      "type": "object",
+      "properties": {
+        "arguments": {
+          "type": "object",
+          "properties": {
+            "floors": {
+              "type": "object",
+              "properties": {
+                "ff82810e-7493-42fc-a56a-3fed79b43e48": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "ff82810e-7493-42fc-a56a-3fed79b43e48"
+              ]
+            },
+            "maxResults": {
+              "type": "integer"
+            },
+            "modelStructure": {
+              "type": "object",
+              "properties": {
+                "children": {
+                  "type": "array",
+                  "items": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "children": {
+                          "type": "array",
+                          "items": [
+                            {
+                              "type": "object",
+                              "properties": {
+                                "backHasBase": {
+                                  "type": "boolean"
+                                },
+                                "baseHeight": {
+                                  "type": "integer"
+                                },
+                                "children": {
+                                  "type": "array",
+                                  "items": {}
+                                },
+                                "controlLine": {
+                                  "type": "string"
+                                },
+                                "frontHasBase": {
+                                  "type": "boolean"
+                                },
+                                "h": {
+                                  "type": "number"
+                                },
+                                "id": {
+                                  "type": "string"
+                                },
+                                "l": {
+                                  "type": "integer"
+                                },
+                                "materials": {
+                                  "type": "object",
+                                  "properties": {
+                                    "back": {
+                                      "type": "string"
+                                    },
+                                    "front": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "back",
+                                    "front"
+                                  ]
+                                },
+                                "ry": {
+                                  "type": "integer"
+                                },
+                                "type": {
+                                  "type": "string"
+                                },
+                                "v": {
+                                  "type": "integer"
+                                },
+                                "w": {
+                                  "type": "number"
+                                },
+                                "x": {
+                                  "type": "number"
+                                },
+                                "y": {
+                                  "type": "integer"
+                                },
+                                "z": {
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "backHasBase",
+                                "baseHeight",
+                                "children",
+                                "controlLine",
+                                "frontHasBase",
+                                "h",
+                                "id",
+                                "l",
+                                "materials",
+                                "ry",
+                                "type",
+                                "v",
+                                "w",
+                                "x",
+                                "y",
+                                "z"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "backHasBase": {
+                                  "type": "boolean"
+                                },
+                                "baseHeight": {
+                                  "type": "integer"
+                                },
+                                "children": {
+                                  "type": "array",
+                                  "items": [
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "children": {
+                                          "type": "array",
+                                          "items": {}
+                                        },
+                                        "columnRatios": {
+                                          "type": "array",
+                                          "items": [
+                                            {
+                                              "type": "array",
+                                              "items": [
+                                                {
+                                                  "type": "integer"
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        },
+                                        "frameLength": {
+                                          "type": "number"
+                                        },
+                                        "frameWidth": {
+                                          "type": "number"
+                                        },
+                                        "h": {
+                                          "type": "number"
+                                        },
+                                        "hideGlass": {
+                                          "type": "boolean"
+                                        },
+                                        "id": {
+                                          "type": "string"
+                                        },
+                                        "l": {
+                                          "type": "number"
+                                        },
+                                        "rowRatios": {
+                                          "type": "array",
+                                          "items": [
+                                            {
+                                              "type": "integer"
+                                            }
+                                          ]
+                                        },
+                                        "ry": {
+                                          "type": "integer"
+                                        },
+                                        "side": {
+                                          "type": "string"
+                                        },
+                                        "type": {
+                                          "type": "string"
+                                        },
+                                        "v": {
+                                          "type": "integer"
+                                        },
+                                        "x": {
+                                          "type": "number"
+                                        },
+                                        "y": {
+                                          "type": "number"
+                                        },
+                                        "z": {
+                                          "type": "integer"
+                                        }
+                                      },
+                                      "required": [
+                                        "children",
+                                        "columnRatios",
+                                        "frameLength",
+                                        "frameWidth",
+                                        "h",
+                                        "hideGlass",
+                                        "id",
+                                        "l",
+                                        "rowRatios",
+                                        "ry",
+                                        "side",
+                                        "type",
+                                        "v",
+                                        "x",
+                                        "y",
+                                        "z"
+                                      ]
+                                    },
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "children": {
+                                          "type": "array",
+                                          "items": {}
+                                        },
+                                        "doorAngle": {
+                                          "type": "integer"
+                                        },
+                                        "doorType": {
+                                          "type": "string"
+                                        },
+                                        "fixLeafRatio": {
+                                          "type": "number"
+                                        },
+                                        "frameLength": {
+                                          "type": "number"
+                                        },
+                                        "frameOffset": {
+                                          "type": "integer"
+                                        },
+                                        "h": {
+                                          "type": "number"
+                                        },
+                                        "hinge": {
+                                          "type": "string"
+                                        },
+                                        "id": {
+                                          "type": "string"
+                                        },
+                                        "l": {
+                                          "type": "number"
+                                        },
+                                        "leafOffset": {
+                                          "type": "number"
+                                        },
+                                        "leafWidth": {
+                                          "type": "number"
+                                        },
+                                        "ry": {
+                                          "type": "integer"
+                                        },
+                                        "side": {
+                                          "type": "string"
+                                        },
+                                        "threshold": {
+                                          "type": "boolean"
+                                        },
+                                        "thresholdHeight": {
+                                          "type": "number"
+                                        },
+                                        "type": {
+                                          "type": "string"
+                                        },
+                                        "v": {
+                                          "type": "integer"
+                                        },
+                                        "w": {
+                                          "type": "number"
+                                        },
+                                        "x": {
+                                          "type": "integer"
+                                        },
+                                        "y": {
+                                          "type": "integer"
+                                        },
+                                        "z": {
+                                          "type": "integer"
+                                        }
+                                      },
+                                      "required": [
+                                        "children",
+                                        "doorAngle",
+                                        "doorType",
+                                        "fixLeafRatio",
+                                        "frameLength",
+                                        "frameOffset",
+                                        "h",
+                                        "hinge",
+                                        "id",
+                                        "l",
+                                        "leafOffset",
+                                        "leafWidth",
+                                        "ry",
+                                        "side",
+                                        "threshold",
+                                        "thresholdHeight",
+                                        "type",
+                                        "v",
+                                        "w",
+                                        "x",
+                                        "y",
+                                        "z"
+                                      ]
+                                    }
+                                  ]
+                                },
+                                "controlLine": {
+                                  "type": "string"
+                                },
+                                "frontHasBase": {
+                                  "type": "boolean"
+                                },
+                                "h": {
+                                  "type": "number"
+                                },
+                                "id": {
+                                  "type": "string"
+                                },
+                                "l": {
+                                  "type": "integer"
+                                },
+                                "materials": {
+                                  "type": "object",
+                                  "properties": {
+                                    "back": {
+                                      "type": "string"
+                                    },
+                                    "front": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "back",
+                                    "front"
+                                  ]
+                                },
+                                "ry": {
+                                  "type": "integer"
+                                },
+                                "type": {
+                                  "type": "string"
+                                },
+                                "v": {
+                                  "type": "integer"
+                                },
+                                "w": {
+                                  "type": "number"
+                                },
+                                "x": {
+                                  "type": "number"
+                                },
+                                "y": {
+                                  "type": "integer"
+                                },
+                                "z": {
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "backHasBase",
+                                "baseHeight",
+                                "children",
+                                "controlLine",
+                                "frontHasBase",
+                                "h",
+                                "id",
+                                "l",
+                                "materials",
+                                "ry",
+                                "type",
+                                "v",
+                                "w",
+                                "x",
+                                "y",
+                                "z"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "barCounter": {
+                                  "type": "boolean"
+                                },
+                                "baseBoard": {
+                                  "type": "number"
+                                },
+                                "cabinetType": {
+                                  "type": "string"
+                                },
+                                "children": {
+                                  "type": "array",
+                                  "items": {}
+                                },
+                                "cooktopPos": {
+                                  "type": "integer"
+                                },
+                                "cooktopType": {
+                                  "type": "string"
+                                },
+                                "counterHeight": {
+                                  "type": "number"
+                                },
+                                "counterThickness": {
+                                  "type": "number"
+                                },
+                                "doorWidth": {
+                                  "type": "number"
+                                },
+                                "elementLength": {
+                                  "type": "number"
+                                },
+                                "extractorType": {
+                                  "type": "string"
+                                },
+                                "fridge": {
+                                  "type": "boolean"
+                                },
+                                "fridgePos": {
+                                  "type": "integer"
+                                },
+                                "h": {
+                                  "type": "number"
+                                },
+                                "highCabinetLeft": {
+                                  "type": "integer"
+                                },
+                                "highCabinetRight": {
+                                  "type": "integer"
+                                },
+                                "id": {
+                                  "type": "string"
+                                },
+                                "l": {
+                                  "type": "number"
+                                },
+                                "materials": {
+                                  "type": "object",
+                                  "properties": {
+                                    "kitchen": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "kitchen"
+                                  ]
+                                },
+                                "microwave": {
+                                  "type": "boolean"
+                                },
+                                "microwavePos": {
+                                  "type": "integer"
+                                },
+                                "ovenPos": {
+                                  "type": "integer"
+                                },
+                                "ovenType": {
+                                  "type": "string"
+                                },
+                                "ry": {
+                                  "type": "integer"
+                                },
+                                "sinkPos": {
+                                  "type": "integer"
+                                },
+                                "sinkType": {
+                                  "type": "string"
+                                },
+                                "type": {
+                                  "type": "string"
+                                },
+                                "v": {
+                                  "type": "integer"
+                                },
+                                "w": {
+                                  "type": "number"
+                                },
+                                "wallCabinet": {
+                                  "type": "boolean"
+                                },
+                                "wallCabinetHeight": {
+                                  "type": "number"
+                                },
+                                "wallCabinetWidth": {
+                                  "type": "number"
+                                },
+                                "x": {
+                                  "type": "number"
+                                },
+                                "y": {
+                                  "type": "integer"
+                                },
+                                "z": {
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "barCounter",
+                                "baseBoard",
+                                "cabinetType",
+                                "children",
+                                "cooktopPos",
+                                "cooktopType",
+                                "counterHeight",
+                                "counterThickness",
+                                "doorWidth",
+                                "elementLength",
+                                "extractorType",
+                                "fridge",
+                                "fridgePos",
+                                "h",
+                                "highCabinetLeft",
+                                "highCabinetRight",
+                                "id",
+                                "l",
+                                "materials",
+                                "microwave",
+                                "microwavePos",
+                                "ovenPos",
+                                "ovenType",
+                                "ry",
+                                "sinkPos",
+                                "sinkType",
+                                "type",
+                                "v",
+                                "w",
+                                "wallCabinet",
+                                "wallCabinetHeight",
+                                "wallCabinetWidth",
+                                "x",
+                                "y",
+                                "z"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "children": {
+                                  "type": "array",
+                                  "items": {}
+                                },
+                                "h": {
+                                  "type": "number"
+                                },
+                                "hasCeiling": {
+                                  "type": "boolean"
+                                },
+                                "hCeiling": {
+                                  "type": "number"
+                                },
+                                "id": {
+                                  "type": "string"
+                                },
+                                "materials": {
+                                  "type": "object",
+                                  "properties": {
+                                    "top": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "top"
+                                  ]
+                                },
+                                "polygon": {
+                                  "type": "array",
+                                  "items": [
+                                    {
+                                      "type": "array",
+                                      "items": [
+                                        {
+                                          "type": "number"
+                                        },
+                                        {
+                                          "type": "number"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "array",
+                                      "items": [
+                                        {
+                                          "type": "number"
+                                        },
+                                        {
+                                          "type": "number"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "array",
+                                      "items": [
+                                        {
+                                          "type": "number"
+                                        },
+                                        {
+                                          "type": "number"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "array",
+                                      "items": [
+                                        {
+                                          "type": "number"
+                                        },
+                                        {
+                                          "type": "number"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                "polygonHoles": {
+                                  "type": "array",
+                                  "items": {}
+                                },
+                                "ry": {
+                                  "type": "integer"
+                                },
+                                "type": {
+                                  "type": "string"
+                                },
+                                "usage": {
+                                  "type": "string"
+                                },
+                                "v": {
+                                  "type": "integer"
+                                },
+                                "x": {
+                                  "type": "integer"
+                                },
+                                "y": {
+                                  "type": "integer"
+                                },
+                                "z": {
+                                  "type": "integer"
+                                }
+                              },
+                              "required": [
+                                "children",
+                                "h",
+                                "hasCeiling",
+                                "hCeiling",
+                                "id",
+                                "materials",
+                                "polygon",
+                                "polygonHoles",
+                                "ry",
+                                "type",
+                                "usage",
+                                "v",
+                                "x",
+                                "y",
+                                "z"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "backHasBase": {
+                                  "type": "boolean"
+                                },
+                                "baseHeight": {
+                                  "type": "integer"
+                                },
+                                "children": {
+                                  "type": "array",
+                                  "items": {}
+                                },
+                                "controlLine": {
+                                  "type": "string"
+                                },
+                                "frontHasBase": {
+                                  "type": "boolean"
+                                },
+                                "h": {
+                                  "type": "number"
+                                },
+                                "id": {
+                                  "type": "string"
+                                },
+                                "l": {
+                                  "type": "integer"
+                                },
+                                "materials": {
+                                  "type": "object",
+                                  "properties": {
+                                    "back": {
+                                      "type": "string"
+                                    },
+                                    "front": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "back",
+                                    "front"
+                                  ]
+                                },
+                                "ry": {
+                                  "type": "integer"
+                                },
+                                "type": {
+                                  "type": "string"
+                                },
+                                "v": {
+                                  "type": "integer"
+                                },
+                                "w": {
+                                  "type": "number"
+                                },
+                                "x": {
+                                  "type": "number"
+                                },
+                                "y": {
+                                  "type": "integer"
+                                },
+                                "z": {
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "backHasBase",
+                                "baseHeight",
+                                "children",
+                                "controlLine",
+                                "frontHasBase",
+                                "h",
+                                "id",
+                                "l",
+                                "materials",
+                                "ry",
+                                "type",
+                                "v",
+                                "w",
+                                "x",
+                                "y",
+                                "z"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "backHasBase": {
+                                  "type": "boolean"
+                                },
+                                "baseHeight": {
+                                  "type": "integer"
+                                },
+                                "children": {
+                                  "type": "array",
+                                  "items": {}
+                                },
+                                "controlLine": {
+                                  "type": "string"
+                                },
+                                "frontHasBase": {
+                                  "type": "boolean"
+                                },
+                                "h": {
+                                  "type": "number"
+                                },
+                                "id": {
+                                  "type": "string"
+                                },
+                                "l": {
+                                  "type": "integer"
+                                },
+                                "materials": {
+                                  "type": "object",
+                                  "properties": {
+                                    "back": {
+                                      "type": "string"
+                                    },
+                                    "front": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "back",
+                                    "front"
+                                  ]
+                                },
+                                "ry": {
+                                  "type": "integer"
+                                },
+                                "type": {
+                                  "type": "string"
+                                },
+                                "v": {
+                                  "type": "integer"
+                                },
+                                "w": {
+                                  "type": "number"
+                                },
+                                "x": {
+                                  "type": "number"
+                                },
+                                "y": {
+                                  "type": "integer"
+                                },
+                                "z": {
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "backHasBase",
+                                "baseHeight",
+                                "children",
+                                "controlLine",
+                                "frontHasBase",
+                                "h",
+                                "id",
+                                "l",
+                                "materials",
+                                "ry",
+                                "type",
+                                "v",
+                                "w",
+                                "x",
+                                "y",
+                                "z"
+                              ]
+                            }
+                          ]
+                        },
+                        "id": {
+                          "type": "string"
+                        },
+                        "ry": {
+                          "type": "integer"
+                        },
+                        "type": {
+                          "type": "string"
+                        },
+                        "x": {
+                          "type": "integer"
+                        },
+                        "y": {
+                          "type": "integer"
+                        },
+                        "z": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "children",
+                        "id",
+                        "ry",
+                        "type",
+                        "x",
+                        "y",
+                        "z"
+                      ]
+                    }
+                  ]
+                },
+                "id": {
+                  "type": "string"
+                },
+                "ry": {
+                  "type": "integer"
+                },
+                "type": {
+                  "type": "string"
+                },
+                "v": {
+                  "type": "integer"
+                },
+                "x": {
+                  "type": "integer"
+                },
+                "y": {
+                  "type": "integer"
+                },
+                "z": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "children",
+                "id",
+                "ry",
+                "type",
+                "v",
+                "x",
+                "y",
+                "z"
+              ]
+            },
+            "tags": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "required": [
+            "floors",
+            "maxResults",
+            "modelStructure",
+            "tags"
+          ]
+        }
+      },
+      "required": [
+        "arguments"
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "jsonrpc",
+    "method",
+    "params"
+  ]
+}

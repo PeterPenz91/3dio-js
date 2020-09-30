@@ -1,0 +1,2816 @@
+{
+  "ok": true,
+  "result": {
+    "version": "2.1",
+    "schemaByType": {
+      "a:helper:spaceDivider": {
+        "type": "object",
+        "required": ["type", "id", "children", "x", "y", "z", "ry", "l"],
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "description": "scene structure element type",
+            "type": "string",
+            "const": "a:helper:spaceDivider"
+          },
+          "id": {
+            "description": "scene structure unique element ID in UUIDv4 format",
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+          },
+          "children": {
+            "type": "array",
+            "items": { "type": "object" },
+            "default": []
+          },
+          "x": {
+            "description": "X position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "y": {
+            "description": "Y position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "z": {
+            "description": "Z position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "ry": {
+            "description": "rotation around Y axis in arc degree",
+            "type": "number",
+            "default": 0
+          },
+          "visible": {
+            "description": "defines visibility based on camera mode",
+            "type": "object",
+            "properties": {
+              "floorplan": { "type": "boolean" },
+              "bird": { "type": "boolean" },
+              "person": { "type": "boolean" }
+            }
+          },
+          "bake": {
+            "description": "toggle to include node in baking",
+            "type": "boolean"
+          },
+          "hideInBakedModel": {
+            "description": "toggle to include node in baking but hide geometry in output",
+            "type": "boolean"
+          },
+          "bakeStatus": {
+            "description": "info on whether the node has been included in baked geometry",
+            "enum": ["none", "pending", "done"],
+            "type": "string"
+          },
+          "locked": { "type": "boolean" },
+          "l": {
+            "description": "length in meters",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 1
+          }
+        }
+      },
+      "a:reference:externalId": {
+        "type": "object",
+        "required": ["type", "id", "children", "nodeId", "value"],
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "description": "scene structure element type",
+            "type": "string",
+            "const": "a:reference:externalId"
+          },
+          "id": {
+            "description": "scene structure unique element ID in UUIDv4 format",
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+          },
+          "children": {
+            "type": "array",
+            "items": { "type": "object" },
+            "default": []
+          },
+          "nodeId": {
+            "description": "External reference to scene structure node",
+            "type": "string",
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+          },
+          "value": {
+            "description": "external reference value",
+            "type": "string",
+            "pattern": "^.{1,100}$"
+          }
+        }
+      },
+      "a:reference:ifcElement": {
+        "type": "object",
+        "required": ["type", "id", "children", "nodeId", "ifcId", "ifcFileId"],
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "description": "scene structure element type",
+            "type": "string",
+            "const": "a:reference:ifcElement"
+          },
+          "id": {
+            "description": "scene structure unique element ID in UUIDv4 format",
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+          },
+          "children": {
+            "type": "array",
+            "items": { "type": "object" },
+            "default": []
+          },
+          "nodeId": {
+            "description": "Relation to scene structure node",
+            "type": "string",
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+          },
+          "ifcKey": {
+            "description": "Ifc element type",
+            "type": "string",
+            "pattern": "^ifc[A-z]{1,50}$"
+          },
+          "ifcId": { "description": "Ifc unique id", "type": "string" },
+          "ifcFileId": {
+            "description": "reference to node that carries file info",
+            "type": "string",
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+          }
+        }
+      },
+      "a:reference:ifcFile": {
+        "type": "object",
+        "required": ["type", "id", "children", "fileUrl", "timeStamp"],
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "description": "scene structure element type",
+            "type": "string",
+            "const": "a:reference:ifcFile"
+          },
+          "id": {
+            "description": "scene structure unique element ID in UUIDv4 format",
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+          },
+          "children": {
+            "type": "array",
+            "items": { "type": "object" },
+            "default": []
+          },
+          "fileUrl": {
+            "description": "Location of the ifc file that was imported",
+            "type": "string",
+            "pattern": "^https://.+.ifc"
+          },
+          "timeStamp": {
+            "description": "Unix timestamp of import",
+            "type": "number"
+          }
+        }
+      },
+      "a:relation:wall": {
+        "type": "object",
+        "required": ["type", "id", "children", "nodeIds"],
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "description": "scene structure element type",
+            "type": "string",
+            "const": "a:relation:wall"
+          },
+          "id": {
+            "description": "scene structure unique element ID in UUIDv4 format",
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+          },
+          "children": {
+            "type": "array",
+            "items": { "type": "object" },
+            "default": []
+          },
+          "nodeIds": {
+            "type": "object",
+            "patternProperties": {
+              "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$": {
+                "type": "string",
+                "enum": ["start", "end", "edge"]
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "a:settings:display": {
+        "type": "object",
+        "required": ["type", "id", "children", "units"],
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "description": "scene structure element type",
+            "type": "string",
+            "const": "a:settings:display"
+          },
+          "id": {
+            "description": "scene structure unique element ID in UUIDv4 format",
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+          },
+          "children": {
+            "type": "array",
+            "items": { "type": "object" },
+            "default": []
+          },
+          "units": {
+            "description": "unit system for display",
+            "type": "string",
+            "enum": ["metric", "imperial"],
+            "default": "metric"
+          }
+        }
+      },
+      "a:settings:generatedGroup": {
+        "type": "object",
+        "required": ["type", "id", "children", "method", "nodeId", "params"],
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "description": "scene structure element type",
+            "type": "string",
+            "const": "a:settings:generatedGroup"
+          },
+          "id": {
+            "description": "scene structure unique element ID in UUIDv4 format",
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+          },
+          "children": {
+            "type": "array",
+            "items": { "type": "object" },
+            "default": []
+          },
+          "nodeId": {
+            "description": "id of the group node",
+            "type": "string",
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+          },
+          "method": {
+            "description": "name of method that generated the group",
+            "type": "string",
+            "enum": ["generateGroups", "generateDeskGrid"]
+          },
+          "params": {
+            "description": "parameters of the generation",
+            "type": "object"
+          }
+        }
+      },
+      "box": {
+        "type": "object",
+        "required": [
+          "type",
+          "id",
+          "children",
+          "x",
+          "y",
+          "z",
+          "ry",
+          "l",
+          "w",
+          "h"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "description": "scene structure element type",
+            "type": "string",
+            "const": "box"
+          },
+          "id": {
+            "description": "scene structure unique element ID in UUIDv4 format",
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+          },
+          "children": {
+            "type": "array",
+            "items": { "type": "object" },
+            "default": [],
+            "maxItems": 0
+          },
+          "x": {
+            "description": "X position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "y": {
+            "description": "Y position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "z": {
+            "description": "Z position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "ry": {
+            "description": "rotation around Y axis in arc degree",
+            "type": "number",
+            "default": 0
+          },
+          "visible": {
+            "description": "defines visibility based on camera mode",
+            "type": "object",
+            "properties": {
+              "floorplan": { "type": "boolean" },
+              "bird": { "type": "boolean" },
+              "person": { "type": "boolean" }
+            }
+          },
+          "bake": {
+            "description": "toggle to include node in baking",
+            "type": "boolean"
+          },
+          "hideInBakedModel": {
+            "description": "toggle to include node in baking but hide geometry in output",
+            "type": "boolean"
+          },
+          "bakeStatus": {
+            "description": "info on whether the node has been included in baked geometry",
+            "enum": ["none", "pending", "done"],
+            "type": "string"
+          },
+          "locked": { "type": "boolean" },
+          "l": {
+            "description": "length in meters",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 1
+          },
+          "w": {
+            "description": "width in meters",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 1
+          },
+          "h": {
+            "description": "height in meters",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 1
+          },
+          "materials": { "type": "object" },
+          "class": {
+            "type": "array",
+            "items": { "type": "string" },
+            "default": []
+          }
+        }
+      },
+      "camera-bookmark": {
+        "type": "object",
+        "required": [
+          "type",
+          "id",
+          "children",
+          "x",
+          "y",
+          "z",
+          "ry",
+          "rx",
+          "distance",
+          "fov",
+          "name"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "description": "scene structure element type",
+            "type": "string",
+            "const": "camera-bookmark"
+          },
+          "id": {
+            "description": "scene structure unique element ID in UUIDv4 format",
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+          },
+          "children": {
+            "type": "array",
+            "items": { "type": "object" },
+            "default": [],
+            "maxItems": 0
+          },
+          "x": {
+            "description": "X position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "y": {
+            "description": "Y position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "z": {
+            "description": "Z position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "ry": {
+            "description": "rotation around Y axis in arc degree",
+            "type": "number",
+            "default": 0
+          },
+          "visible": {
+            "description": "defines visibility based on camera mode",
+            "type": "object",
+            "properties": {
+              "floorplan": { "type": "boolean" },
+              "bird": { "type": "boolean" },
+              "person": { "type": "boolean" }
+            }
+          },
+          "bake": {
+            "description": "toggle to include node in baking",
+            "type": "boolean"
+          },
+          "hideInBakedModel": {
+            "description": "toggle to include node in baking but hide geometry in output",
+            "type": "boolean"
+          },
+          "bakeStatus": {
+            "description": "info on whether the node has been included in baked geometry",
+            "enum": ["none", "pending", "done"],
+            "type": "string"
+          },
+          "locked": { "type": "boolean" },
+          "rx": {
+            "description": "pitch-rotation (around X) axis in arc degree",
+            "type": "number",
+            "default": 0
+          },
+          "distance": {
+            "type": "number",
+            "description": "camera distance to pivot point in meters"
+          },
+          "fov": {
+            "description": "field of view in arc degree",
+            "type": "number",
+            "default": 71
+          },
+          "name": { "type": "string", "default": "Camera Bookmark" },
+          "mode": { "type": "string", "enum": ["floorplan", "bird", "person"] },
+          "index": { "type": "number" },
+          "displayInUI": { "type": "boolean" },
+          "activeLevelId": { "type": "string" },
+          "hiddenLevelIds": { "type": "array", "items": { "type": "string" } },
+          "visibleLevelIds": { "type": "array", "items": { "type": "string" } }
+        },
+        "description": "preset camera positions for animations and navigation"
+      },
+      "closet": {
+        "type": "object",
+        "required": [
+          "type",
+          "id",
+          "children",
+          "x",
+          "y",
+          "z",
+          "ry",
+          "l",
+          "w",
+          "h"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "description": "scene structure element type",
+            "type": "string",
+            "const": "closet"
+          },
+          "id": {
+            "description": "scene structure unique element ID in UUIDv4 format",
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+          },
+          "children": {
+            "type": "array",
+            "items": { "type": "object" },
+            "default": [],
+            "maxItems": 0
+          },
+          "x": {
+            "description": "X position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "y": {
+            "description": "Y position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "z": {
+            "description": "Z position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "ry": {
+            "description": "rotation around Y axis in arc degree",
+            "type": "number",
+            "default": 0
+          },
+          "visible": {
+            "description": "defines visibility based on camera mode",
+            "type": "object",
+            "properties": {
+              "floorplan": { "type": "boolean" },
+              "bird": { "type": "boolean" },
+              "person": { "type": "boolean" }
+            }
+          },
+          "bake": {
+            "description": "toggle to include node in baking",
+            "type": "boolean"
+          },
+          "hideInBakedModel": {
+            "description": "toggle to include node in baking but hide geometry in output",
+            "type": "boolean"
+          },
+          "bakeStatus": {
+            "description": "info on whether the node has been included in baked geometry",
+            "enum": ["none", "pending", "done"],
+            "type": "string"
+          },
+          "locked": { "type": "boolean" },
+          "l": {
+            "description": "length in meters",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 1.8
+          },
+          "w": {
+            "description": "width in meters",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 0.6
+          },
+          "h": {
+            "description": "height in meters",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 2.4
+          },
+          "materials": { "type": "object" },
+          "baseboard": {
+            "description": "baseboard height in meters",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 0.1
+          },
+          "doorWidth": {
+            "description": "thickness of closet door",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 0.02
+          },
+          "handleLength": {
+            "description": "length of closet door handle",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 0.02
+          },
+          "handleWidth": {
+            "description": "thickness of closet door handle",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 0.02
+          },
+          "handleHeight": {
+            "description": "height of closet door handle",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 0.3
+          }
+        },
+        "description": "parametric closet with segmentation targeting 0.6m"
+      },
+      "column": {
+        "type": "object",
+        "required": ["type", "id", "children", "x", "y", "z", "ry", "l", "h"],
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "description": "scene structure element type",
+            "type": "string",
+            "const": "column"
+          },
+          "id": {
+            "description": "scene structure unique element ID in UUIDv4 format",
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+          },
+          "children": {
+            "type": "array",
+            "items": { "type": "object" },
+            "default": [],
+            "maxItems": 0
+          },
+          "x": {
+            "description": "X position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "y": {
+            "description": "Y position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "z": {
+            "description": "Z position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "ry": {
+            "description": "rotation around Y axis in arc degree",
+            "type": "number",
+            "default": 0
+          },
+          "visible": {
+            "description": "defines visibility based on camera mode",
+            "type": "object",
+            "properties": {
+              "floorplan": { "type": "boolean" },
+              "bird": { "type": "boolean" },
+              "person": { "type": "boolean" }
+            }
+          },
+          "bake": {
+            "description": "toggle to include node in baking",
+            "type": "boolean"
+          },
+          "hideInBakedModel": {
+            "description": "toggle to include node in baking but hide geometry in output",
+            "type": "boolean"
+          },
+          "bakeStatus": {
+            "description": "info on whether the node has been included in baked geometry",
+            "enum": ["none", "pending", "done"],
+            "type": "string"
+          },
+          "locked": { "type": "boolean" },
+          "l": {
+            "description": "length for square / diameter for circle",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 0.2
+          },
+          "h": {
+            "description": "height in meters",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 2.4
+          },
+          "materials": { "type": "object" },
+          "shape": {
+            "description": "column contour",
+            "type": "string",
+            "enum": ["square", "circle"],
+            "default": "square"
+          }
+        },
+        "description": "parametric closet with segmentation targeting 0.6m"
+      },
+      "curtain": {
+        "type": "object",
+        "required": [
+          "type",
+          "id",
+          "children",
+          "x",
+          "y",
+          "z",
+          "ry",
+          "l",
+          "w",
+          "h"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "description": "scene structure element type",
+            "type": "string",
+            "const": "curtain"
+          },
+          "id": {
+            "description": "scene structure unique element ID in UUIDv4 format",
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+          },
+          "children": {
+            "type": "array",
+            "items": { "type": "object" },
+            "default": [],
+            "maxItems": 0
+          },
+          "x": {
+            "description": "X position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "y": {
+            "description": "Y position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "z": {
+            "description": "Z position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "ry": {
+            "description": "rotation around Y axis in arc degree",
+            "type": "number",
+            "default": 0
+          },
+          "visible": {
+            "description": "defines visibility based on camera mode",
+            "type": "object",
+            "properties": {
+              "floorplan": { "type": "boolean" },
+              "bird": { "type": "boolean" },
+              "person": { "type": "boolean" }
+            }
+          },
+          "bake": {
+            "description": "toggle to include node in baking",
+            "type": "boolean"
+          },
+          "hideInBakedModel": {
+            "description": "toggle to include node in baking but hide geometry in output",
+            "type": "boolean"
+          },
+          "bakeStatus": {
+            "description": "info on whether the node has been included in baked geometry",
+            "enum": ["none", "pending", "done"],
+            "type": "string"
+          },
+          "locked": { "type": "boolean" },
+          "l": {
+            "description": "length for square / diameter for circle",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 1.8
+          },
+          "w": {
+            "description": "thickness in meters",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 0.2
+          },
+          "h": {
+            "description": "height in meters",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 2.4
+          },
+          "materials": { "type": "object" },
+          "folds": {
+            "description": "number of folds",
+            "type": "number",
+            "minimum": 1,
+            "default": 14
+          }
+        },
+        "description": "parametric closet with segmentation targeting 0.6m"
+      },
+      "door": {
+        "type": "object",
+        "required": [
+          "type",
+          "id",
+          "children",
+          "x",
+          "y",
+          "z",
+          "ry",
+          "l",
+          "w",
+          "h",
+          "doorType"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "description": "scene structure element type",
+            "type": "string",
+            "const": "door"
+          },
+          "id": {
+            "description": "scene structure unique element ID in UUIDv4 format",
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+          },
+          "children": {
+            "type": "array",
+            "items": { "type": "object" },
+            "default": [],
+            "maxItems": 0
+          },
+          "x": {
+            "description": "X position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "y": {
+            "description": "Y position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "z": {
+            "description": "Z position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "ry": {
+            "description": "rotation around Y axis in arc degree",
+            "type": "number",
+            "default": 0
+          },
+          "visible": {
+            "description": "defines visibility based on camera mode",
+            "type": "object",
+            "properties": {
+              "floorplan": { "type": "boolean" },
+              "bird": { "type": "boolean" },
+              "person": { "type": "boolean" }
+            }
+          },
+          "bake": {
+            "description": "toggle to include node in baking",
+            "type": "boolean"
+          },
+          "hideInBakedModel": {
+            "description": "toggle to include node in baking but hide geometry in output",
+            "type": "boolean"
+          },
+          "bakeStatus": {
+            "description": "info on whether the node has been included in baked geometry",
+            "enum": ["none", "pending", "done"],
+            "type": "string"
+          },
+          "locked": { "type": "boolean" },
+          "l": {
+            "description": "length in meters",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 0.9
+          },
+          "w": {
+            "description": "width in meters",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 0.05
+          },
+          "h": {
+            "description": "height in meters",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 2
+          },
+          "materials": { "type": "object" },
+          "frameLength": {
+            "description": "frame thickness in meters",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 0.05
+          },
+          "frameOffset": {
+            "description": "frame thicker than wall",
+            "type": "number",
+            "minimum": 0,
+            "default": 0
+          },
+          "leafWidth": {
+            "description": "thickness of door leaf",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 0.03
+          },
+          "leafOffset": {
+            "description": "z offset of door leaf",
+            "type": "number",
+            "minimum": 0,
+            "default": 0.005
+          },
+          "doorType": {
+            "description": "defines opening type",
+            "type": "string",
+            "enum": [
+              "singleSwing",
+              "doubleSwing",
+              "swingFix",
+              "swingDoubleFix",
+              "doubleSwingDoubleFix",
+              "slidingDoor",
+              "opening",
+              "elevatorDoor",
+              "garageDoor"
+            ],
+            "default": "singleSwing"
+          },
+          "handleType": {
+            "description": "defines handle type",
+            "type": "string",
+            "enum": ["squareEdged", "round", "classic", "knob"],
+            "default": "squareEdged"
+          },
+          "hinge": {
+            "description": "door leaf opening direction",
+            "type": "string",
+            "enum": ["right", "left"],
+            "default": "right"
+          },
+          "side": {
+            "description": "door leaf opening to the front or back of the wall",
+            "type": "string",
+            "enum": ["front", "back"],
+            "default": "back"
+          },
+          "doorAngle": {
+            "description": "door leaf opening anlge",
+            "type": "number",
+            "minimum": 0,
+            "default": 92
+          },
+          "fixLeafRatio": { "type": "number", "minimum": 0, "default": 0.3 },
+          "threshold": { "type": "boolean", "default": true },
+          "thresholdHeight": {
+            "type": "number",
+            "minimum": 0,
+            "default": 0.01
+          },
+          "topWindow": { "type": "boolean" },
+          "class": {
+            "type": "array",
+            "items": { "type": "string" },
+            "default": []
+          }
+        },
+        "description": "door within a wall"
+      },
+      "floor": {
+        "type": "object",
+        "required": [
+          "type",
+          "id",
+          "children",
+          "x",
+          "y",
+          "z",
+          "ry",
+          "l",
+          "w",
+          "h",
+          "hasCeiling",
+          "hCeiling"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "description": "scene structure element type",
+            "type": "string",
+            "const": "floor"
+          },
+          "id": {
+            "description": "scene structure unique element ID in UUIDv4 format",
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+          },
+          "children": {
+            "type": "array",
+            "items": { "type": "object" },
+            "default": [],
+            "maxItems": 0
+          },
+          "x": {
+            "description": "X position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "y": {
+            "description": "Y position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "z": {
+            "description": "Z position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "ry": {
+            "description": "rotation around Y axis in arc degree",
+            "type": "number",
+            "default": 0
+          },
+          "visible": {
+            "description": "defines visibility based on camera mode",
+            "type": "object",
+            "properties": {
+              "floorplan": { "type": "boolean" },
+              "bird": { "type": "boolean" },
+              "person": { "type": "boolean" }
+            }
+          },
+          "bake": {
+            "description": "toggle to include node in baking",
+            "type": "boolean"
+          },
+          "hideInBakedModel": {
+            "description": "toggle to include node in baking but hide geometry in output",
+            "type": "boolean"
+          },
+          "bakeStatus": {
+            "description": "info on whether the node has been included in baked geometry",
+            "enum": ["none", "pending", "done"],
+            "type": "string"
+          },
+          "locked": { "type": "boolean" },
+          "l": {
+            "description": "length in meters",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 4
+          },
+          "w": {
+            "description": "width in meters",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 4
+          },
+          "h": {
+            "description": "height in meters",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 0.2
+          },
+          "materials": { "type": "object" },
+          "hasCeiling": {
+            "description": "toggle ceiling",
+            "type": "boolean",
+            "default": true
+          },
+          "hCeiling": {
+            "description": "ceiling height in meters",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 2.4
+          }
+        }
+      },
+      "floorplan": {
+        "type": "object",
+        "required": [
+          "type",
+          "id",
+          "children",
+          "x",
+          "y",
+          "z",
+          "ry",
+          "l",
+          "w",
+          "file"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "description": "scene structure element type",
+            "type": "string",
+            "const": "floorplan"
+          },
+          "id": {
+            "description": "scene structure unique element ID in UUIDv4 format",
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+          },
+          "children": {
+            "type": "array",
+            "items": { "type": "object" },
+            "default": [],
+            "maxItems": 0
+          },
+          "x": {
+            "description": "X position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "y": {
+            "description": "Y position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "z": {
+            "description": "Z position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "ry": {
+            "description": "rotation around Y axis in arc degree",
+            "type": "number",
+            "default": 0
+          },
+          "visible": {
+            "description": "defines visibility based on camera mode",
+            "type": "object",
+            "properties": {
+              "floorplan": { "type": "boolean" },
+              "bird": { "type": "boolean" },
+              "person": { "type": "boolean" }
+            }
+          },
+          "bake": {
+            "description": "toggle to include node in baking",
+            "type": "boolean"
+          },
+          "hideInBakedModel": {
+            "description": "toggle to include node in baking but hide geometry in output",
+            "type": "boolean"
+          },
+          "bakeStatus": {
+            "description": "info on whether the node has been included in baked geometry",
+            "enum": ["none", "pending", "done"],
+            "type": "string"
+          },
+          "locked": { "type": "boolean" },
+          "l": {
+            "description": "length in meters",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 4
+          },
+          "w": {
+            "description": "width in meters",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 4
+          },
+          "file": { "description": "path like file key", "type": "string" },
+          "xRay": { "type": "boolean" },
+          "class": {
+            "type": "array",
+            "items": { "type": "string" },
+            "default": []
+          }
+        }
+      },
+      "group": {
+        "type": "object",
+        "required": ["type", "id", "children", "x", "y", "z", "ry"],
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "description": "scene structure element type",
+            "type": "string",
+            "const": "group"
+          },
+          "id": {
+            "description": "scene structure unique element ID in UUIDv4 format",
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+          },
+          "children": {
+            "type": "array",
+            "items": [
+              {
+                "properties": {
+                  "type": {
+                    "enum": [
+                      "box",
+                      "column",
+                      "group",
+                      "interior",
+                      "object",
+                      "polybox",
+                      "wall"
+                    ]
+                  }
+                }
+              }
+            ],
+            "default": [],
+            "minItems": 0
+          },
+          "x": {
+            "description": "X position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "y": {
+            "description": "Y position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "z": {
+            "description": "Z position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "ry": {
+            "description": "rotation around Y axis in arc degree",
+            "type": "number",
+            "default": 0
+          },
+          "visible": {
+            "description": "defines visibility based on camera mode",
+            "type": "object",
+            "properties": {
+              "floorplan": { "type": "boolean" },
+              "bird": { "type": "boolean" },
+              "person": { "type": "boolean" }
+            }
+          },
+          "bake": {
+            "description": "toggle to include node in baking",
+            "type": "boolean"
+          },
+          "hideInBakedModel": {
+            "description": "toggle to include node in baking but hide geometry in output",
+            "type": "boolean"
+          },
+          "bakeStatus": {
+            "description": "info on whether the node has been included in baked geometry",
+            "enum": ["none", "pending", "done"],
+            "type": "string"
+          },
+          "locked": { "type": "boolean" }
+        }
+      },
+      "interior": {
+        "type": "object",
+        "required": ["type", "id", "children", "x", "y", "z", "ry", "src"],
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "description": "scene structure element type",
+            "type": "string",
+            "const": "interior"
+          },
+          "id": {
+            "description": "scene structure unique element ID in UUIDv4 format",
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+          },
+          "children": {
+            "type": "array",
+            "items": [
+              {
+                "properties": {
+                  "type": {
+                    "enum": ["interior", "object", "tag", "box", "group"]
+                  }
+                }
+              }
+            ],
+            "default": []
+          },
+          "x": {
+            "description": "X position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "y": {
+            "description": "Y position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "z": {
+            "description": "Z position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "ry": {
+            "description": "rotation around Y axis in arc degree",
+            "type": "number",
+            "default": 0
+          },
+          "visible": {
+            "description": "defines visibility based on camera mode",
+            "type": "object",
+            "properties": {
+              "floorplan": { "type": "boolean" },
+              "bird": { "type": "boolean" },
+              "person": { "type": "boolean" }
+            }
+          },
+          "bake": {
+            "description": "toggle to include node in baking",
+            "type": "boolean"
+          },
+          "hideInBakedModel": {
+            "description": "toggle to include node in baking but hide geometry in output",
+            "type": "boolean"
+          },
+          "bakeStatus": {
+            "description": "info on whether the node has been included in baked geometry",
+            "enum": ["none", "pending", "done"],
+            "type": "string"
+          },
+          "locked": { "type": "boolean" },
+          "materials": { "type": "object" },
+          "src": {
+            "type": "string",
+            "pattern": "^![0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+          },
+          "interior": { "type": "string" },
+          "castShadow": { "type": "boolean" },
+          "receiveShadow": { "type": "boolean" },
+          "h": { "type": "number" },
+          "w": { "type": "number" },
+          "mat": { "type": "number" },
+          "picType": { "type": "string" },
+          "picSize": { "type": "number" },
+          "picture": { "type": "string" },
+          "frameMat": { "type": "string" },
+          "picFormat": { "type": "string" },
+          "frameWidth": { "type": "number" },
+          "frameLength": { "type": "number" }
+        },
+        "description": "furniture id prefixed with '!', check https://furniture.3d.io"
+      },
+      "kitchen": {
+        "type": "object",
+        "required": [
+          "type",
+          "id",
+          "children",
+          "x",
+          "y",
+          "z",
+          "ry",
+          "l",
+          "w",
+          "h"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "description": "scene structure element type",
+            "type": "string",
+            "const": "kitchen"
+          },
+          "id": {
+            "description": "scene structure unique element ID in UUIDv4 format",
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+          },
+          "children": {
+            "type": "array",
+            "items": { "type": "object" },
+            "default": [],
+            "maxItems": 0
+          },
+          "x": {
+            "description": "X position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "y": {
+            "description": "Y position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "z": {
+            "description": "Z position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "ry": {
+            "description": "rotation around Y axis in arc degree",
+            "type": "number",
+            "default": 0
+          },
+          "visible": {
+            "description": "defines visibility based on camera mode",
+            "type": "object",
+            "properties": {
+              "floorplan": { "type": "boolean" },
+              "bird": { "type": "boolean" },
+              "person": { "type": "boolean" }
+            }
+          },
+          "bake": {
+            "description": "toggle to include node in baking",
+            "type": "boolean"
+          },
+          "hideInBakedModel": {
+            "description": "toggle to include node in baking but hide geometry in output",
+            "type": "boolean"
+          },
+          "bakeStatus": {
+            "description": "info on whether the node has been included in baked geometry",
+            "enum": ["none", "pending", "done"],
+            "type": "string"
+          },
+          "locked": { "type": "boolean" },
+          "l": {
+            "description": "length in meters",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 4.2
+          },
+          "w": {
+            "description": "width in meters",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 0.6
+          },
+          "h": {
+            "description": "height in meters",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 2.4
+          },
+          "v": {
+            "description": "version",
+            "type": "number",
+            "minimum": 1,
+            "default": 2
+          },
+          "materials": { "type": "object" },
+          "elementLength": {
+            "type": "number",
+            "default": 0.6,
+            "minimum": 0.01
+          },
+          "baseBoard": { "type": "number", "default": 0.1, "minimum": 0.01 },
+          "counterHeight": {
+            "type": "number",
+            "default": 0.9,
+            "minimum": 0.01
+          },
+          "counterThickness": {
+            "type": "number",
+            "default": 0.03,
+            "minimum": 0.01
+          },
+          "barCounter": { "type": "boolean", "default": false },
+          "doorWidth": { "type": "number", "default": 0.02, "minimum": 0.01 },
+          "highCabinetLeft": {
+            "type": "number",
+            "default": 2,
+            "multipleOf": 1,
+            "minimum": 0
+          },
+          "highCabinetRight": {
+            "type": "number",
+            "default": 0,
+            "multipleOf": 1,
+            "minimum": 0
+          },
+          "wallCabinet": { "type": "boolean", "default": true },
+          "wallCabinetHeight": {
+            "type": "number",
+            "default": 1.5,
+            "minimum": 0.01
+          },
+          "wallCabinetWidth": {
+            "type": "number",
+            "default": 0.45,
+            "minimum": 0.01
+          },
+          "cabinetType": {
+            "type": "string",
+            "enum": ["flat", "style1", "style2"],
+            "default": "flat"
+          },
+          "sinkType": {
+            "type": "string",
+            "enum": ["single", "double", "none"],
+            "default": "fsinglelat"
+          },
+          "sinkPos": {
+            "type": "number",
+            "default": 4,
+            "multipleOf": 1,
+            "minimum": 1
+          },
+          "extractorType": {
+            "type": "string",
+            "enum": ["box", "pyramid", "integrated", "none"],
+            "default": "integrated"
+          },
+          "ovenType": {
+            "type": "string",
+            "enum": ["single", "double", "none"],
+            "default": "single"
+          },
+          "ovenPos": {
+            "type": "number",
+            "default": 6,
+            "multipleOf": 1,
+            "minimum": 1
+          },
+          "cooktopType": {
+            "type": "string",
+            "enum": ["electro60", "electro90", "gas60", "gas90", "none"],
+            "default": "electro60"
+          },
+          "cooktopPos": {
+            "type": "number",
+            "default": 6,
+            "multipleOf": 1,
+            "minimum": 1
+          },
+          "microwave": { "type": "boolean", "default": false },
+          "microwavePos": {
+            "type": "number",
+            "default": 1,
+            "multipleOf": 1,
+            "minimum": 1
+          },
+          "fridge": { "type": "boolean", "default": false },
+          "fridgePos": {
+            "type": "number",
+            "default": 1,
+            "multipleOf": 1,
+            "minimum": 1
+          }
+        }
+      },
+      "level": {
+        "type": "object",
+        "required": ["type", "id", "children", "x", "y", "z", "ry"],
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "description": "scene structure element type",
+            "type": "string",
+            "const": "level"
+          },
+          "id": {
+            "description": "scene structure unique element ID in UUIDv4 format",
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+          },
+          "children": {
+            "type": "array",
+            "items": [
+              {
+                "properties": {
+                  "type": {
+                    "enum": [
+                      "a:helper:spaceDivider",
+                      "a:relation:wall",
+                      "a:settings:generatedGroup",
+                      "box",
+                      "closet",
+                      "column",
+                      "curtain",
+                      "floor",
+                      "floorplan",
+                      "group",
+                      "interior",
+                      "kitchen",
+                      "object",
+                      "polybox",
+                      "polyfloor",
+                      "railing",
+                      "stairs",
+                      "tag",
+                      "wall"
+                    ]
+                  }
+                }
+              }
+            ],
+            "default": [],
+            "minItems": 0
+          },
+          "x": {
+            "description": "X position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "y": {
+            "description": "Y position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "z": {
+            "description": "Z position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "ry": {
+            "description": "rotation around Y axis in arc degree",
+            "type": "number",
+            "default": 0
+          },
+          "visible": {
+            "description": "defines visibility based on camera mode",
+            "type": "object",
+            "properties": {
+              "floorplan": { "type": "boolean" },
+              "bird": { "type": "boolean" },
+              "person": { "type": "boolean" }
+            }
+          },
+          "bake": {
+            "description": "toggle to include node in baking",
+            "type": "boolean"
+          },
+          "hideInBakedModel": {
+            "description": "toggle to include node in baking but hide geometry in output",
+            "type": "boolean"
+          },
+          "bakeStatus": {
+            "description": "info on whether the node has been included in baked geometry",
+            "enum": ["none", "pending", "done"],
+            "type": "string"
+          },
+          "locked": { "type": "boolean" },
+          "bakeSettings": { "type": "object" },
+          "bakedModelUrl": { "type": ["string", "null"] },
+          "lightMapCenter": { "type": "number" },
+          "bakeContentHash": { "type": "string" },
+          "bakedModelStage": { "type": ["string", "null"] },
+          "lightMapFalloff": { "type": "number" },
+          "lightMapIntensity": { "type": "number" },
+          "bakePreviewStatusFileKey": { "type": ["string", "null"] },
+          "bakeRegularStatusFileKey": { "type": ["string", "null"] },
+          "bakePollStage": {
+            "type": ["string", "null"],
+            "enum": [null, "null", "preview", "regular"]
+          },
+          "pendingBakeJobs": { "type": "array" }
+        },
+        "description": "node equivalent to a building storey"
+      },
+      "object": {
+        "type": "object",
+        "required": ["type", "id", "children", "x", "y", "z", "ry", "object"],
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "description": "scene structure element type",
+            "type": "string",
+            "const": "object"
+          },
+          "id": {
+            "description": "scene structure unique element ID in UUIDv4 format",
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+          },
+          "children": {
+            "type": "array",
+            "items": [{ "properties": { "type": { "enum": ["interior"] } } }],
+            "default": [],
+            "minItems": 0
+          },
+          "x": {
+            "description": "X position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "y": {
+            "description": "Y position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "z": {
+            "description": "Z position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "ry": {
+            "description": "rotation around Y axis in arc degree",
+            "type": "number",
+            "default": 0
+          },
+          "visible": {
+            "description": "defines visibility based on camera mode",
+            "type": "object",
+            "properties": {
+              "floorplan": { "type": "boolean" },
+              "bird": { "type": "boolean" },
+              "person": { "type": "boolean" }
+            }
+          },
+          "bake": {
+            "description": "toggle to include node in baking",
+            "type": "boolean"
+          },
+          "hideInBakedModel": {
+            "description": "toggle to include node in baking but hide geometry in output",
+            "type": "boolean"
+          },
+          "bakeStatus": {
+            "description": "info on whether the node has been included in baked geometry",
+            "enum": ["none", "pending", "done"],
+            "type": "string"
+          },
+          "locked": { "type": "boolean" },
+          "materials": { "type": "object" },
+          "sourceScale": {
+            "description": "relative scale of source file to 1 meter",
+            "type": "number"
+          },
+          "object": {
+            "description": "reference to data3d.buffer file",
+            "type": "string",
+            "default": 1
+          },
+          "flipYZ": {
+            "description": "flip Y and Z Axis",
+            "type": "boolean",
+            "default": false
+          },
+          "credits": { "description": "copyright info", "type": "string" },
+          "castShadow": { "type": "boolean" },
+          "receiveShadow": { "type": "boolean" }
+        },
+        "description": "referenced 3d object in data3d.buffer format, for conversion drop a .obj into the editor spaces.archilogic.com/3d"
+      },
+      "pic": {
+        "type": "object",
+        "required": [
+          "type",
+          "id",
+          "children",
+          "x",
+          "y",
+          "z",
+          "ry",
+          "l",
+          "w",
+          "h",
+          "hasCeiling",
+          "hCeiling"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "description": "scene structure element type",
+            "type": "string",
+            "const": "pic"
+          },
+          "id": {
+            "description": "scene structure unique element ID in UUIDv4 format",
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+          },
+          "children": {
+            "type": "array",
+            "items": { "type": "object" },
+            "default": [],
+            "maxItems": 0
+          },
+          "x": {
+            "description": "X position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "y": {
+            "description": "Y position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "z": {
+            "description": "Z position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "ry": {
+            "description": "rotation around Y axis in arc degree",
+            "type": "number",
+            "default": 0
+          },
+          "visible": {
+            "description": "defines visibility based on camera mode",
+            "type": "object",
+            "properties": {
+              "floorplan": { "type": "boolean" },
+              "bird": { "type": "boolean" },
+              "person": { "type": "boolean" }
+            }
+          },
+          "bake": {
+            "description": "toggle to include node in baking",
+            "type": "boolean"
+          },
+          "hideInBakedModel": {
+            "description": "toggle to include node in baking but hide geometry in output",
+            "type": "boolean"
+          },
+          "bakeStatus": {
+            "description": "info on whether the node has been included in baked geometry",
+            "enum": ["none", "pending", "done"],
+            "type": "string"
+          },
+          "locked": { "type": "boolean" },
+          "l": {
+            "description": "length in meters",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 1.6
+          },
+          "w": {
+            "description": "width in meters",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 0.05
+          },
+          "h": {
+            "description": "height in meters",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 1.5
+          },
+          "materials": { "type": "object" },
+          "frameLength": { "type": "number", "minimum": 0.01, "default": 0.04 },
+          "frameWidth": { "type": "number", "minimum": 0.01, "default": 0.06 },
+          "mat": { "type": "number", "minimum": 0, "default": 0.05 },
+          "position": { "type": "number", "minimum": 0.01, "default": 1.2 },
+          "ratio": { "type": "number", "minimum": 0.01, "default": 1.2 }
+        }
+      },
+      "plan": {
+        "type": "object",
+        "required": ["type", "id", "children", "x", "y", "z", "ry", "v"],
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "description": "scene structure element type",
+            "type": "string",
+            "const": "plan"
+          },
+          "id": {
+            "description": "scene structure unique element ID in UUIDv4 format",
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+          },
+          "children": {
+            "type": "array",
+            "items": [
+              {
+                "properties": {
+                  "type": {
+                    "enum": [
+                      "level",
+                      "camera-bookmark",
+                      "a:settings:display",
+                      "a:reference:externalId",
+                      "a:reference:ifcFile",
+                      "a:reference:ifcElement"
+                    ]
+                  }
+                }
+              }
+            ],
+            "default": [],
+            "minItems": 0
+          },
+          "x": {
+            "description": "X position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "y": {
+            "description": "Y position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "z": {
+            "description": "Z position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "ry": {
+            "description": "rotation around Y axis in arc degree",
+            "type": "number",
+            "default": 0
+          },
+          "visible": {
+            "description": "defines visibility based on camera mode",
+            "type": "object",
+            "properties": {
+              "floorplan": { "type": "boolean" },
+              "bird": { "type": "boolean" },
+              "person": { "type": "boolean" }
+            }
+          },
+          "bake": {
+            "description": "toggle to include node in baking",
+            "type": "boolean"
+          },
+          "hideInBakedModel": {
+            "description": "toggle to include node in baking but hide geometry in output",
+            "type": "boolean"
+          },
+          "bakeStatus": {
+            "description": "info on whether the node has been included in baked geometry",
+            "enum": ["none", "pending", "done"],
+            "type": "string"
+          },
+          "locked": { "type": "boolean" },
+          "v": { "type": "string", "default": "2.1" },
+          "modelDisplayName": {
+            "description": "name of the scene",
+            "type": "string"
+          },
+          "skyMap": { "type": "string" },
+          "bakeSettings": {
+            "type": "object",
+            "properties": {
+              "lat": { "type": "number" },
+              "long": { "type": "number" },
+              "year": {
+                "type": "number",
+                "minimum": 1000,
+                "maximum": 3000,
+                "multipleOf": 1
+              },
+              "month": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 11,
+                "multipleOf": 1
+              },
+              "date": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 31,
+                "multipleOf": 1
+              },
+              "hour": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 23,
+                "multipleOf": 1
+              },
+              "minute": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 59,
+                "multipleOf": 1
+              }
+            }
+          },
+          "activeLevelId": { "type": "string" },
+          "floorArea": { "type": "number" },
+          "rootPlan": { "type": "string" },
+          "class": {
+            "type": "array",
+            "items": { "type": "string" },
+            "default": []
+          }
+        },
+        "description": "highest node in hierarchy, contains levels"
+      },
+      "polybox": {
+        "type": "object",
+        "required": [
+          "type",
+          "id",
+          "children",
+          "x",
+          "y",
+          "z",
+          "ry",
+          "h",
+          "polygon"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "description": "scene structure element type",
+            "type": "string",
+            "const": "polybox"
+          },
+          "id": {
+            "description": "scene structure unique element ID in UUIDv4 format",
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+          },
+          "children": {
+            "type": "array",
+            "items": { "type": "object" },
+            "default": [],
+            "maxItems": 0
+          },
+          "x": {
+            "description": "X position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "y": {
+            "description": "Y position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "z": {
+            "description": "Z position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "ry": {
+            "description": "rotation around Y axis in arc degree",
+            "type": "number",
+            "default": 0
+          },
+          "visible": {
+            "description": "defines visibility based on camera mode",
+            "type": "object",
+            "properties": {
+              "floorplan": { "type": "boolean" },
+              "bird": { "type": "boolean" },
+              "person": { "type": "boolean" }
+            }
+          },
+          "bake": {
+            "description": "toggle to include node in baking",
+            "type": "boolean"
+          },
+          "hideInBakedModel": {
+            "description": "toggle to include node in baking but hide geometry in output",
+            "type": "boolean"
+          },
+          "bakeStatus": {
+            "description": "info on whether the node has been included in baked geometry",
+            "enum": ["none", "pending", "done"],
+            "type": "string"
+          },
+          "locked": { "type": "boolean" },
+          "h": {
+            "description": "height in meters",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 1
+          },
+          "materials": { "type": "object" },
+          "polygon": {
+            "type": "array",
+            "minItems": 3,
+            "items": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2,
+              "items": { "type": "number" }
+            },
+            "default": [
+              [1.5, 1.5],
+              [1.5, -1.5],
+              [-1.5, -1.5],
+              [-1.5, 1.5]
+            ]
+          }
+        },
+        "description": "polygonal extrusion object"
+      },
+      "polyfloor": {
+        "type": "object",
+        "required": [
+          "type",
+          "id",
+          "children",
+          "x",
+          "y",
+          "z",
+          "ry",
+          "h",
+          "polygon"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "description": "scene structure element type",
+            "type": "string",
+            "const": "polyfloor"
+          },
+          "id": {
+            "description": "scene structure unique element ID in UUIDv4 format",
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+          },
+          "children": {
+            "type": "array",
+            "items": { "type": "object" },
+            "default": [],
+            "maxItems": 0
+          },
+          "x": {
+            "description": "X position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "y": {
+            "description": "Y position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "z": {
+            "description": "Z position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "ry": {
+            "description": "rotation around Y axis in arc degree",
+            "type": "number",
+            "default": 0
+          },
+          "visible": {
+            "description": "defines visibility based on camera mode",
+            "type": "object",
+            "properties": {
+              "floorplan": { "type": "boolean" },
+              "bird": { "type": "boolean" },
+              "person": { "type": "boolean" }
+            }
+          },
+          "bake": {
+            "description": "toggle to include node in baking",
+            "type": "boolean"
+          },
+          "hideInBakedModel": {
+            "description": "toggle to include node in baking but hide geometry in output",
+            "type": "boolean"
+          },
+          "bakeStatus": {
+            "description": "info on whether the node has been included in baked geometry",
+            "enum": ["none", "pending", "done"],
+            "type": "string"
+          },
+          "locked": { "type": "boolean" },
+          "h": {
+            "description": "vertical floor geometry extrusion in meters",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 0.2
+          },
+          "materials": { "type": "object" },
+          "polygon": {
+            "description": "outer polygon",
+            "type": "array",
+            "minItems": 3,
+            "items": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2,
+              "items": { "type": "number" }
+            },
+            "default": [
+              [1.5, 1.5],
+              [1.5, -1.5],
+              [-1.5, -1.5],
+              [-1.5, 1.5]
+            ]
+          },
+          "polygonHoles": {
+            "description": "polygon holes",
+            "type": "array",
+            "minItems": 0,
+            "items": {
+              "type": "array",
+              "minItems": 3,
+              "items": {
+                "type": "array",
+                "minItems": 2,
+                "maxItems": 2,
+                "items": { "type": "number" }
+              }
+            },
+            "default": []
+          },
+          "hasCeiling": {
+            "description": "toggle ceiling",
+            "type": "boolean",
+            "default": true
+          },
+          "hCeiling": {
+            "description": "ceiling height in meters",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 2.4
+          },
+          "usage": {
+            "description": "usage of that space",
+            "type": "string",
+            "enum": [
+              "living",
+              "dining_living",
+              "homeOffice",
+              "bedroom",
+              "dining",
+              "kitchen",
+              "garage",
+              "executiveOffice",
+              "openWorkspace",
+              "closedWorkspace",
+              "meetingRoom",
+              "collaboration",
+              "work",
+              "meet",
+              "operate",
+              "common",
+              "lobby",
+              "bathroom",
+              "toilet",
+              "storage",
+              "corridor",
+              "staircase",
+              "elevator",
+              "balcony",
+              "terrace",
+              "services",
+              "undefined"
+            ]
+          }
+        },
+        "description": "polygonal floor with optional ceiling"
+      },
+      "railing": {
+        "type": "object",
+        "required": [
+          "type",
+          "id",
+          "children",
+          "x",
+          "y",
+          "z",
+          "ry",
+          "l",
+          "w",
+          "h",
+          "pailing",
+          "segmentation"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "description": "scene structure element type",
+            "type": "string",
+            "const": "railing"
+          },
+          "id": {
+            "description": "scene structure unique element ID in UUIDv4 format",
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+          },
+          "children": {
+            "type": "array",
+            "items": { "type": "object" },
+            "default": [],
+            "maxItems": 0
+          },
+          "x": {
+            "description": "X position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "y": {
+            "description": "Y position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "z": {
+            "description": "Z position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "ry": {
+            "description": "rotation around Y axis in arc degree",
+            "type": "number",
+            "default": 0
+          },
+          "visible": {
+            "description": "defines visibility based on camera mode",
+            "type": "object",
+            "properties": {
+              "floorplan": { "type": "boolean" },
+              "bird": { "type": "boolean" },
+              "person": { "type": "boolean" }
+            }
+          },
+          "bake": {
+            "description": "toggle to include node in baking",
+            "type": "boolean"
+          },
+          "hideInBakedModel": {
+            "description": "toggle to include node in baking but hide geometry in output",
+            "type": "boolean"
+          },
+          "bakeStatus": {
+            "description": "info on whether the node has been included in baked geometry",
+            "enum": ["none", "pending", "done"],
+            "type": "string"
+          },
+          "locked": { "type": "boolean" },
+          "l": {
+            "description": "length in meters",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 1
+          },
+          "w": {
+            "description": "width in meters",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 0.05
+          },
+          "h": {
+            "description": "height in meters",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 1
+          },
+          "materials": { "type": "object" },
+          "pailing": {
+            "description": "strength of the posts",
+            "type": "number",
+            "default": 0.01,
+            "minimum": 0.01
+          },
+          "railCount": {
+            "description": "horizontal rail count",
+            "type": "number",
+            "default": 2,
+            "multipleOf": 1,
+            "minimum": 0
+          },
+          "segmentation": {
+            "description": "vertical segmentation type",
+            "type": "string",
+            "enum": ["distance", "number", "none"],
+            "default": "distance"
+          },
+          "segments": {
+            "description": "number of vertical segments, for segmentation = \"number\"",
+            "type": "number",
+            "default": 5,
+            "multipleOf": 1,
+            "minimum": 0
+          },
+          "segmentDistance": {
+            "description": "distance between vertical segments, for segmentation = \"distance\"",
+            "type": "number",
+            "default": 0.14,
+            "minimum": 0.01
+          }
+        },
+        "description": "segmented or solid railing"
+      },
+      "stairs": {
+        "type": "object",
+        "required": [
+          "type",
+          "id",
+          "children",
+          "x",
+          "y",
+          "z",
+          "ry",
+          "l",
+          "w",
+          "h",
+          "stepWidth",
+          "stairType",
+          "treadHeight",
+          "stepThickness",
+          "railing",
+          "railingType"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "description": "scene structure element type",
+            "type": "string",
+            "const": "stairs"
+          },
+          "id": {
+            "description": "scene structure unique element ID in UUIDv4 format",
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+          },
+          "children": {
+            "type": "array",
+            "items": { "type": "object" },
+            "default": [],
+            "maxItems": 0
+          },
+          "x": {
+            "description": "X position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "y": {
+            "description": "Y position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "z": {
+            "description": "Z position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "ry": {
+            "description": "rotation around Y axis in arc degree",
+            "type": "number",
+            "default": 0
+          },
+          "visible": {
+            "description": "defines visibility based on camera mode",
+            "type": "object",
+            "properties": {
+              "floorplan": { "type": "boolean" },
+              "bird": { "type": "boolean" },
+              "person": { "type": "boolean" }
+            }
+          },
+          "bake": {
+            "description": "toggle to include node in baking",
+            "type": "boolean"
+          },
+          "hideInBakedModel": {
+            "description": "toggle to include node in baking but hide geometry in output",
+            "type": "boolean"
+          },
+          "bakeStatus": {
+            "description": "info on whether the node has been included in baked geometry",
+            "enum": ["none", "pending", "done"],
+            "type": "string"
+          },
+          "locked": { "type": "boolean" },
+          "l": {
+            "description": "length in meters",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 4
+          },
+          "w": {
+            "description": "width in meters",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 1.2
+          },
+          "h": {
+            "description": "height in meters",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 2.4
+          },
+          "materials": { "type": "object" },
+          "stepWidth": { "type": "number", "minimum": 0.01, "default": 1.2 },
+          "stairType": {
+            "type": "string",
+            "enum": [
+              "straight",
+              "straightLanding",
+              "lShaped",
+              "halfLanding",
+              "2QuarterLanding",
+              "winder",
+              "doubleWinder",
+              "spiral"
+            ],
+            "default": "straight"
+          },
+          "circulation": {
+            "type": "string",
+            "enum": ["left", "right"],
+            "default": "right"
+          },
+          "treadHeight": { "type": "number", "minimum": 0, "default": 0.02 },
+          "stepThickness": { "type": "number", "minimum": 0, "default": 0.17 },
+          "railing": {
+            "type": "string",
+            "enum": ["none", "left", "right", "both"],
+            "default": "right"
+          },
+          "railingType": {
+            "type": "string",
+            "enum": ["verticalBars", "filling"],
+            "default": "verticalBars"
+          }
+        },
+        "description": "segmented or solid railing"
+      },
+      "tag": {
+        "type": "object",
+        "required": ["type", "id", "children", "x", "y", "z", "ry", "title"],
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "description": "scene structure element type",
+            "type": "string",
+            "const": "tag"
+          },
+          "id": {
+            "description": "scene structure unique element ID in UUIDv4 format",
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+          },
+          "children": {
+            "type": "array",
+            "items": { "type": "object" },
+            "default": [],
+            "maxItems": 0
+          },
+          "x": {
+            "description": "X position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "y": {
+            "description": "Y position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "z": {
+            "description": "Z position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "ry": {
+            "description": "rotation around Y axis in arc degree",
+            "type": "number",
+            "default": 0
+          },
+          "visible": {
+            "description": "defines visibility based on camera mode",
+            "type": "object",
+            "properties": {
+              "floorplan": { "type": "boolean" },
+              "bird": { "type": "boolean" },
+              "person": { "type": "boolean" }
+            }
+          },
+          "bake": {
+            "description": "toggle to include node in baking",
+            "type": "boolean"
+          },
+          "hideInBakedModel": {
+            "description": "toggle to include node in baking but hide geometry in output",
+            "type": "boolean"
+          },
+          "bakeStatus": {
+            "description": "info on whether the node has been included in baked geometry",
+            "enum": ["none", "pending", "done"],
+            "type": "string"
+          },
+          "locked": { "type": "boolean" },
+          "title": { "type": "string" },
+          "notes": { "type": "string" },
+          "materials": { "type": "object" }
+        }
+      },
+      "wall": {
+        "type": "object",
+        "required": [
+          "type",
+          "id",
+          "children",
+          "x",
+          "y",
+          "z",
+          "ry",
+          "l",
+          "w",
+          "h"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "description": "scene structure element type",
+            "type": "string",
+            "const": "wall"
+          },
+          "id": {
+            "description": "scene structure unique element ID in UUIDv4 format",
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+          },
+          "children": {
+            "type": "array",
+            "items": [
+              { "properties": { "type": { "enum": ["window", "door"] } } }
+            ],
+            "default": []
+          },
+          "x": {
+            "description": "X position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "y": {
+            "description": "Y position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "z": {
+            "description": "Z position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "ry": {
+            "description": "rotation around Y axis in arc degree",
+            "type": "number",
+            "default": 0
+          },
+          "visible": {
+            "description": "defines visibility based on camera mode",
+            "type": "object",
+            "properties": {
+              "floorplan": { "type": "boolean" },
+              "bird": { "type": "boolean" },
+              "person": { "type": "boolean" }
+            }
+          },
+          "bake": {
+            "description": "toggle to include node in baking",
+            "type": "boolean"
+          },
+          "hideInBakedModel": {
+            "description": "toggle to include node in baking but hide geometry in output",
+            "type": "boolean"
+          },
+          "bakeStatus": {
+            "description": "info on whether the node has been included in baked geometry",
+            "enum": ["none", "pending", "done"],
+            "type": "string"
+          },
+          "locked": { "type": "boolean" },
+          "l": {
+            "description": "length in meters",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 1
+          },
+          "w": {
+            "description": "width in meters",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 0.15
+          },
+          "h": {
+            "description": "height in meters",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 2.4
+          },
+          "materials": { "type": "object" },
+          "controlLine": {
+            "description": "relative position of the control line to the wall",
+            "type": "string",
+            "enum": ["back", "center", "front"],
+            "default": "back"
+          },
+          "baseHeight": {
+            "description": "baseboard height in meters",
+            "type": "number",
+            "default": 0
+          },
+          "frontHasBase": {
+            "description": "show baseboard on the front",
+            "type": "boolean",
+            "default": false
+          },
+          "backHasBase": {
+            "description": "show baseboard on the back",
+            "type": "boolean",
+            "default": false
+          }
+        }
+      },
+      "window": {
+        "type": "object",
+        "required": ["type", "id", "children", "x", "y", "z", "ry", "l", "h"],
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "description": "scene structure element type",
+            "type": "string",
+            "const": "window"
+          },
+          "id": {
+            "description": "scene structure unique element ID in UUIDv4 format",
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+          },
+          "children": {
+            "type": "array",
+            "items": { "type": "object" },
+            "default": [],
+            "maxItems": 0
+          },
+          "x": {
+            "description": "X position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "y": {
+            "description": "Y position in meters relative to parent element",
+            "type": "number",
+            "default": 0.8
+          },
+          "z": {
+            "description": "Z position in meters relative to parent element",
+            "type": "number",
+            "default": 0
+          },
+          "ry": {
+            "description": "rotation around Y axis in arc degree",
+            "type": "number",
+            "default": 0
+          },
+          "visible": {
+            "description": "defines visibility based on camera mode",
+            "type": "object",
+            "properties": {
+              "floorplan": { "type": "boolean" },
+              "bird": { "type": "boolean" },
+              "person": { "type": "boolean" }
+            }
+          },
+          "bake": {
+            "description": "toggle to include node in baking",
+            "type": "boolean"
+          },
+          "hideInBakedModel": {
+            "description": "toggle to include node in baking but hide geometry in output",
+            "type": "boolean"
+          },
+          "bakeStatus": {
+            "description": "info on whether the node has been included in baked geometry",
+            "enum": ["none", "pending", "done"],
+            "type": "string"
+          },
+          "locked": { "type": "boolean" },
+          "l": {
+            "description": "length in meters",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 1.6
+          },
+          "h": {
+            "description": "height in meters",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 1.5
+          },
+          "materials": { "type": "object" },
+          "side": {
+            "description": "relative position of the window inside the wall opening",
+            "type": "string",
+            "enum": ["back", "center", "front"],
+            "default": "back"
+          },
+          "rowRatios": {
+            "description": "relative height of horizontal segmentation",
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "number" },
+            "default": [1]
+          },
+          "columnRatios": {
+            "description": "relative width of vertical segmentation per row",
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "array",
+              "minItems": 1,
+              "items": { "type": "number" }
+            },
+            "default": [[1]]
+          },
+          "frameLength": {
+            "description": "thickness of the frame in meters",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 0.04
+          },
+          "frameWidth": {
+            "description": "width of the frame in meters",
+            "type": "number",
+            "minimum": 0.01,
+            "default": 0.06
+          },
+          "hideGlass": {
+            "description": "hides glass mesh",
+            "type": "boolean",
+            "default": false
+          },
+          "class": {
+            "type": "array",
+            "items": { "type": "string" },
+            "default": []
+          }
+        }
+      }
+    }
+  }
+}
